@@ -12,6 +12,7 @@ source:
 
 build:
   number: 1
+  noarch: python
   entry_points:
     - potable=atsim.potentials.tools.potable:main
   script: {{ PYTHON }} -m pip install . -vv
@@ -19,15 +20,14 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python >=3.6
   run:
     - cexprtk >=0.3.4
     - configparser
-    - funcsigs ==1.0.2  # [py<35]
     - future
-    - openpyxl >=3.0.0  # [py>=36]
+    - openpyxl >=3.0.0
     - pyparsing >=2.2.0
-    - python
+    - python >=3.6
     - scipy
     - setuptools
     - wrapt ==1.11.2
