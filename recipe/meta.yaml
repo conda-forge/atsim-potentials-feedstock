@@ -1,5 +1,5 @@
 {% set name = "atsim-potentials" %}
-{% set version = "0.3.0" %}
+{% set version = "0.4.0" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/atsim.potentials/atsim.potentials-{{ version }}.tar.gz
-  sha256: 70082fc40b0ab7565a671c2d764fe3db08bc6ce45da44e1c1e8b77a65d1f7a23
+  sha256: 0c3e4e2323e969880f17a9924642e0991be5761f50b254bcbadd046db3be6390
 
 build:
   number: 0
@@ -30,7 +30,7 @@ requirements:
     - python >=3.6
     - scipy
     - setuptools
-    - wrapt ==1.11.2
+    - wrapt >=1.12.1
 
 test:
   imports:
@@ -47,7 +47,7 @@ about:
   license: Apache-2.0
   license_family: OTHER
   license_file: LICENSE
-  summary: 'Tools and python module to assist in tabulation of pair and EAM potentials for atomistic simulation.'
+  summary: Tools and python module to assist in tabulation of pair and EAM potentials for atomistic simulation.
   description: |
     Classical simulation codes typically contain a good selection of
     analytical forms for describing atomic interactions. Sometimes
