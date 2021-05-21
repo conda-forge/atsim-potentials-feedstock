@@ -30,7 +30,7 @@ requirements:
     - python >=3.6
     - scipy
     - setuptools
-    - wrapt ==1.11.2
+    - wrapt >=1.12.1
 
 test:
   imports:
