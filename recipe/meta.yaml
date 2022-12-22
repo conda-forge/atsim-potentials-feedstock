@@ -1,5 +1,5 @@
 {% set name = "atsim-potentials" %}
-{% set version = "0.4.0" %}
+{% set version = "0.4.1" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/atsim.potentials/atsim.potentials-{{ version }}.tar.gz
-  sha256: 0c3e4e2323e969880f17a9924642e0991be5761f50b254bcbadd046db3be6390
+  sha256: 4e04bbe69e16d526f0653a30537b82b2fb10362431cb41ea5e587e1964f6717b
 
 build:
   number: 0
