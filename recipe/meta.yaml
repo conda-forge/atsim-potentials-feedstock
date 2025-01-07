@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/atsim.potentials/atsim.potentials-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/atsim.potentials/atsim.potentials-{{ version }}.tar.gz
   sha256: 4e04bbe69e16d526f0653a30537b82b2fb10362431cb41ea5e587e1964f6717b
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - potable=atsim.potentials.tools.potable:main
@@ -20,14 +20,15 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
+    - setuptools
   run:
     - cexprtk >=0.3.4
     - configparser
     - future
     - openpyxl >=3.0.0
     - pyparsing >=2.2.0
-    - python >=3.6
+    - python >={{ python_min }}
     - scipy
     - setuptools
     - wrapt >=1.12.1
@@ -41,6 +42,7 @@ test:
     - potable --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/mjdrushton/atsim-potentials
