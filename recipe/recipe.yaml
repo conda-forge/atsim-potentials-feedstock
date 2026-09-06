@@ -1,26 +1,29 @@
-{% set name = "atsim-potentials" %}
-{% set version = "0.4.1" %}
+schema_version: 1
 
+context:
+  name: atsim-potentials
+  version: "0.4.1"
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/atsim.potentials/atsim.potentials-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/atsim.potentials/atsim.potentials-${{ version }}.tar.gz
   sha256: 4e04bbe69e16d526f0653a30537b82b2fb10362431cb41ea5e587e1964f6717b
 
 build:
-  number: 1
+  number: 2
   noarch: python
-  entry_points:
-    - potable=atsim.potentials.tools.potable:main
-  script: {{ PYTHON }} -m pip install . -vv
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - potable=atsim.potentials.tools.potable:main
 
 requirements:
   host:
     - pip
-    - python {{ python_min }}
+    - python ${{ python_min }}.*
     - setuptools
   run:
     - cexprtk >=0.3.4
@@ -28,26 +31,29 @@ requirements:
     - future
     - openpyxl >=3.0.0
     - pyparsing >=2.2.0
-    - python >={{ python_min }}
+    - python >=${{ python_min }}
     - scipy
     - setuptools
     - wrapt >=1.12.1
 
-test:
-  imports:
-    - atsim
-    - atsim.potentials
-  commands:
-    - pip check
-    - potable --help
-  requires:
-    - pip
-    - python {{ python_min }}
+tests:
+  - python:
+      imports:
+        - atsim
+        - atsim.potentials
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - "*"
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - potable --help
 
 about:
-  home: https://github.com/mjdrushton/atsim-potentials
   license: Apache-2.0
-  license_family: OTHER
   license_file: LICENSE
   summary: Tools and python module to assist in tabulation of pair and EAM potentials for atomistic simulation.
   description: |
@@ -60,8 +66,9 @@ about:
     rows within a text file. The atsim.potentials package provides python
     modules to make the specification and tabulation of pair- and
     many-body potentials straightforward and consistent.
-  doc_url: https://atsimpotentials.readthedocs.io
-  dev_url: https://github.com/mjdrushton/atsim-potentials
+  homepage: https://github.com/mjdrushton/atsim-potentials
+  repository: https://github.com/mjdrushton/atsim-potentials
+  documentation: https://atsimpotentials.readthedocs.io
 
 extra:
   recipe-maintainers:
